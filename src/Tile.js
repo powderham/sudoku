@@ -1,22 +1,18 @@
-function Player() {
+function Tile() {
+  this._row1 = [null,null,null]
+  this._row2 = [null,null,null]
+  this._row3 = [null,null,null]
 }
-Player.prototype.play = function(song) {
-  this.currentlyPlayingSong = song;
-  this.isPlaying = true;
+
+
+Tile.prototype.row1 = function() {
+  return this._row1
 };
 
-Player.prototype.pause = function() {
-  this.isPlaying = false;
+Tile.prototype.row2 = function() {
+  return this._row2
 };
 
-Player.prototype.resume = function() {
-  if (this.isPlaying) {
-    throw new Error("song is already playing");
-  }
-
-  this.isPlaying = true;
-};
-
-Player.prototype.makeFavorite = function() {
-  this.currentlyPlayingSong.persistFavoriteStatus(true);
+Tile.prototype.row3 = function() {
+  return this._row3
 };
