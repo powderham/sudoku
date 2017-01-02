@@ -26,6 +26,13 @@ describe("Tile", function() {
     expect(tile.existingNumbers()).toEqual([]);
     tile.addNumber(0,0,1);
     expect(tile.existingNumbers()).toEqual([1]);
+    tile.addNumber(0,1,2);
+    expect(tile.existingNumbers()).toEqual([1,2]);
   })
 
+  it("should not allow an existing number to be added again", function(){
+    tile.addNumber(0,0,1);
+    tile.addNumber(0,1,1);
+    expect(tile.row(0)[1]).not.toEqual(1) 
+  })
 });

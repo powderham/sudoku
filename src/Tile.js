@@ -9,7 +9,11 @@ Tile.prototype.row = function (x) {
 
 
 Tile.prototype.addNumber = function (x,y,number) {
-  this._index[x][y] = number
+  if(this.existingNumbers().indexOf(number) === -1){
+    this._index[x][y] = number
+  } else {
+    //do something to indicate unsuccessful - not error to keep programme running
+  }
 };
 
 Tile.prototype.existingNumbers = function () {
