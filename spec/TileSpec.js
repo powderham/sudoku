@@ -23,7 +23,9 @@ describe("Tile", function() {
   })
 
   it("should be able to return existing values", function(){
-    expect(tile.existingNumbers()).toEqual([])
+    expect(tile.existingNumbers()).toEqual([]);
+    tile.addNumber(0,0,1);
+    expect(tile.existingNumbers()).toEqual([1]);
   })
 
 });
