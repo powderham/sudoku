@@ -1,6 +1,6 @@
 # Sudoku Solver
 
-This repository contains the working files for my blog posts titled 'Sudoku Solver, viewable here: (powderham.github.io)[http://powderham.github.io].
+This repository contains the working files for my blog posts titled 'Sudoku Solver, viewable here: [powderham.github.io](http://powderham.github.io).
 
 # The Project
 
