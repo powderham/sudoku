@@ -62,7 +62,14 @@ Grid.prototype.availableNumbers = function (xGrid, yGrid, xTile, yTile) {
       currentNumbers.push(workingNumbers[number])
     }
   }
-  return currentNumbers
+
+  for (var i in currentNumbers){
+    index = allNumbers.indexOf(currentNumbers[i])
+    if (index > -1){
+      allNumbers.splice(index, 1)
+    }
+  }
+  return allNumbers
 };
 
 Grid.prototype.print = function () {
@@ -117,4 +124,23 @@ Grid.prototype.cleanNulls = function (array) {
 
 Grid.prototype.printRow = function (row) {
   console.log("┃ "+row[0]+" │ "+row[1]+" │ "+row[2]+" ┃ "+row[3]+" │ "+row[4]+" │ "+row[5]+" ┃ "+row[6]+" │ "+row[7]+" │ "+row[8]+" ┃")
+};
+
+Grid.prototype.solve = function () {
+  for (i = 0; i <= 2; i++){
+    for (j = 0; j<=2; j++){
+      for(v = 0; v<=2; v++){
+        for(w = 0; w<=2; w++){
+          this.input([i],[j],[v],[w])
+        }
+      }
+    }
+  }
+}
+
+Grid.prototype.input = function (xGrid, yGrid, xTile, yTile) {
+  availableNumbersList = this.availableNumbers(xGrid, yGrid, xTile, yTile)
+  if (availableNumbersList.length == 1 && this.retrieveTile(xGrid,yGrid)._index[xTile][yTile] == null){
+    this.addNumberToTile(xGrid, yGrid, xTile, yTile, availableNumbersList[0])
+  }
 };

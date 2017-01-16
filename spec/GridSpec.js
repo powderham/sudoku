@@ -43,8 +43,20 @@ describe("Grid", function() {
       grid.addNumberToTile(0,0,0,0,1)
       grid.addNumberToTile(1,0,1,1,2)
       grid.addNumberToTile(0,1,1,1,3)
-      grid.print()
       expect(grid.availableNumbers(0,0,1,1)).toEqual([4,5,6,7,8,9])
+    })
+
+    it("can input numbers where only one is available", function() {
+      grid.addNumberToTile(0,0,0,0,1)
+      grid.addNumberToTile(0,0,0,1,2)
+      grid.addNumberToTile(0,0,0,2,3)
+      grid.addNumberToTile(0,0,1,0,4)
+      grid.addNumberToTile(0,0,1,1,5)
+      grid.addNumberToTile(0,0,1,2,6)
+      grid.addNumberToTile(0,0,2,0,7)
+      grid.addNumberToTile(0,0,2,1,8)
+      grid.solve()
+      expect(grid.retrieveTile(0,0)._index[2][2]).toEqual(9)
     })
   })
 });
