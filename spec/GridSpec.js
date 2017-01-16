@@ -44,7 +44,7 @@ describe("Grid", function() {
       grid.addNumberToTile(1,0,1,1,2)
       grid.addNumberToTile(0,1,1,1,3)
       grid.print()
-      grid.availableNumbers(0,0,1,1).toEqual([4,5,6,7,8,9])
+      expect(grid.availableNumbers(0,0,1,1)).toEqual([4,5,6,7,8,9])
     })
   })
 });

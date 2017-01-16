@@ -20,7 +20,7 @@ Grid.prototype.returnColumnNumbers = function (xGrid, yGrid, xTile, yTile) {
   for (var gridRow in this._index ){
     var tile = this._index[gridRow][xGrid]
     for (var tileRow in tile._index){
-      array.push(tile._index[tileRow][yGrid])
+      array.push(tile._index[tileRow][yTile])
     }
   }
   return array
@@ -42,28 +42,27 @@ Grid.prototype.availableNumbers = function (xGrid, yGrid, xTile, yTile) {
   var allNumbers = [1,2,3,4,5,6,7,8,9]
   var currentNumbers = []
   var workingNumbers = []
+
+
   workingNumbers = this.returnRowNumbers(xGrid, yGrid, xTile, yTile)
   for (var number in workingNumbers){
     if(currentNumbers.indexOf(workingNumbers[number]) === -1){
       currentNumbers.push(workingNumbers[number])
-      console.log(workingNumbers[number])
     }
   }
   workingNumbers = this.returnColumnNumbers(xGrid, yGrid, xTile, yTile)
   for (var number in workingNumbers){
     if(currentNumbers.indexOf(workingNumbers[number]) === -1){
       currentNumbers.push(workingNumbers[number])
-      console.log(workingNumbers[number])
     }
   }
-  console.log(this.retrieveTile(xGrid, yGrid).existingNumbers())
   workingNumbers = this.retrieveTile(xGrid, yGrid).existingNumbers()
   for (var number in workingNumbers){
     if(currentNumbers.indexOf(workingNumbers[number]) === -1){
       currentNumbers.push(workingNumbers[number])
     }
   }
-  console.log(currentNumbers)
+  return currentNumbers
 };
 
 Grid.prototype.print = function () {
