@@ -66,91 +66,56 @@ Grid.prototype.availableNumbers = function (xGrid, yGrid, xTile, yTile) {
   console.log(currentNumbers)
 };
 
-Grid.prototype.print = function (array) {
+Grid.prototype.print = function () {
+
+  console.log("┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓")
+
+  array = this.cleanNulls(this.returnRowNumbers(0,0,0,0))
+  this.printRow(array)
+  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
+
+  array = this.cleanNulls(this.returnRowNumbers(0,0,1,0))
+  this.printRow(array)
+  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
+
+  array = this.cleanNulls(this.returnRowNumbers(0,0,2,0))
+  this.printRow(array)
+  console.log("┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫")
+
+  array = this.cleanNulls(this.returnRowNumbers(0,1,0,0))
+  this.printRow(array)
+  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
+
+  array = this.cleanNulls(this.returnRowNumbers(0,1,1,0))
+  this.printRow(array)
+  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
+
+  array = this.cleanNulls(this.returnRowNumbers(0,1,2,0))
+  this.printRow(array)
+  console.log("┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫")
+
+  array = this.cleanNulls(this.returnRowNumbers(0,2,0,0))
+  this.printRow(array)
+  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
+
+  array = this.cleanNulls(this.returnRowNumbers(0,2,1,0))
+  this.printRow(array)
+  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
+
+  array = this.cleanNulls(this.returnRowNumbers(0,2,2,0))
+  this.printRow(array)
+  console.log("┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛")
+};
+
+Grid.prototype.cleanNulls = function (array) {
   for (var number in array){
     if(array[number] === null){
       array[number] = " "
     }
-  }
+  };
+  return array
+};
 
-  console.log("┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓")
-  console.log("┃ "+array[0]+" │ "+array[1]+" │ "+array[2]+" ┃ "+array[3]+" │ "+array[4]+" │ "+array[5]+" ┃ "+array[6]+" │ "+array[7]+" │ "+array[8]+" ┃")
-  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
-
-  array = this.returnRowNumbers(0,0,1,0)
-    for (var number in array){
-      if(array[number] === null){
-        array[number] = " "
-      }
-    }
-
-  console.log("┃ "+array[0]+" │ "+array[1]+" │ "+array[2]+" ┃ "+array[3]+" │ "+array[4]+" │ "+array[5]+" ┃ "+array[6]+" │ "+array[7]+" │ "+array[8]+" ┃")
-  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
-
-  array = this.returnRowNumbers(0,0,2,0)
-    for (var number in array){
-      if(array[number] === null){
-        array[number] = " "
-      }
-    }
-  console.log("┃ "+array[0]+" │ "+array[1]+" │ "+array[2]+" ┃ "+array[3]+" │ "+array[4]+" │ "+array[5]+" ┃ "+array[6]+" │ "+array[7]+" │ "+array[8]+" ┃")
-  console.log("┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫")
-
-  array = this.returnRowNumbers(0,1,0,0)
-    for (var number in array){
-      if(array[number] === null){
-        array[number] = " "
-      }
-    }
-
-    console.log("┃ "+array[0]+" │ "+array[1]+" │ "+array[2]+" ┃ "+array[3]+" │ "+array[4]+" │ "+array[5]+" ┃ "+array[6]+" │ "+array[7]+" │ "+array[8]+" ┃")
-  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
-
-  array = this.returnRowNumbers(0,1,1,0)
-    for (var number in array){
-      if(array[number] === null){
-        array[number] = " "
-      }
-    }
-
-  console.log("┃ "+array[0]+" │ "+array[1]+" │ "+array[2]+" ┃ "+array[3]+" │ "+array[4]+" │ "+array[5]+" ┃ "+array[6]+" │ "+array[7]+" │ "+array[8]+" ┃")
-  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
-
-  array = this.returnRowNumbers(0,1,2,0)
-    for (var number in array){
-      if(array[number] === null){
-        array[number] = " "
-      }
-    }
-
-  console.log("┃ "+array[0]+" │ "+array[1]+" │ "+array[2]+" ┃ "+array[3]+" │ "+array[4]+" │ "+array[5]+" ┃ "+array[6]+" │ "+array[7]+" │ "+array[8]+" ┃")
-  console.log("┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫")
-
-  array = this.returnRowNumbers(0,2,0,0)
-    for (var number in array){
-      if(array[number] === null){
-        array[number] = " "
-      }
-    }
-  console.log("┃ "+array[0]+" │ "+array[1]+" │ "+array[2]+" ┃ "+array[3]+" │ "+array[4]+" │ "+array[5]+" ┃ "+array[6]+" │ "+array[7]+" │ "+array[8]+" ┃")
-  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
-
-  array = this.returnRowNumbers(0,2,1,0)
-    for (var number in array){
-      if(array[number] === null){
-        array[number] = " "
-      }
-    }
-  console.log("┃ "+array[0]+" │ "+array[1]+" │ "+array[2]+" ┃ "+array[3]+" │ "+array[4]+" │ "+array[5]+" ┃ "+array[6]+" │ "+array[7]+" │ "+array[8]+" ┃")
-  console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
-
-  array = this.returnRowNumbers(0,2,2,0)
-    for (var number in array){
-      if(array[number] === null){
-        array[number] = " "
-      }
-    }
-
-  console.log("┃ "+array[0]+" │ "+array[1]+" │ "+array[2]+" ┃ "+array[3]+" │ "+array[4]+" │ "+array[5]+" ┃ "+array[6]+" │ "+array[7]+" │ "+array[8]+" ┃")
-  console.log("┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛")
+Grid.prototype.printRow = function (row) {
+  console.log("┃ "+row[0]+" │ "+row[1]+" │ "+row[2]+" ┃ "+row[3]+" │ "+row[4]+" │ "+row[5]+" ┃ "+row[6]+" │ "+row[7]+" │ "+row[8]+" ┃")
 };
