@@ -43,6 +43,7 @@ describe("Grid", function() {
       grid.addNumberToTile(0,0,0,0,1)
       grid.addNumberToTile(1,0,1,1,2)
       grid.addNumberToTile(0,1,1,1,3)
+      grid.print(grid.returnRowNumbers(0,0,0,0))
       grid.availableNumbers(0,0,1,1).toEqual([4,5,6,7,8,9])
     })
   })
