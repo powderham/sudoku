@@ -141,6 +141,8 @@ Grid.prototype.solve = function () {
 Grid.prototype.input = function (xGrid, yGrid, xTile, yTile) {
   availableNumbersList = this.availableNumbers(xGrid, yGrid, xTile, yTile)
   if (availableNumbersList.length == 1 && this.retrieveTile(xGrid,yGrid)._index[xTile][yTile] == null){
+    console.log(xGrid, yGrid, xTile, yTile)
+    console.log(availableNumbersList)
     this.addNumberToTile(xGrid, yGrid, xTile, yTile, availableNumbersList[0])
   }
 };
