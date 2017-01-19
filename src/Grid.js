@@ -18,7 +18,7 @@ Grid.prototype.retrieveTile = function (x,y) {
 Grid.prototype.returnColumnNumbers = function (xGrid, yGrid, xTile, yTile) {
   var array = []
   for (var gridRow in this._index ){
-    var tile = this._index[gridRow][xGrid]
+    var tile = this.retrieveTile([gridRow],[xGrid])
     for (var tileRow in tile._index){
       array.push(tile._index[tileRow][yTile])
     }
@@ -51,6 +51,7 @@ Grid.prototype.availableNumbers = function (xGrid, yGrid, xTile, yTile) {
     }
   }
   workingNumbers = this.returnColumnNumbers(xGrid, yGrid, xTile, yTile)
+
   for (var number in workingNumbers){
     if(currentNumbers.indexOf(workingNumbers[number]) === -1){
       currentNumbers.push(workingNumbers[number])
@@ -131,18 +132,19 @@ Grid.prototype.solve = function () {
     for (j = 0; j<=2; j++){
       for(v = 0; v<=2; v++){
         for(w = 0; w<=2; w++){
-          this.input([i],[j],[v],[w])
+          console.log([i],[j],[v],[w])
+          this.inputSolve([i],[j],[v],[w])
         }
       }
     }
   }
 }
 
-Grid.prototype.input = function (xGrid, yGrid, xTile, yTile) {
+Grid.prototype.inputSolve = function (xGrid, yGrid, xTile, yTile) {
   availableNumbersList = this.availableNumbers(xGrid, yGrid, xTile, yTile)
+  console.log(availableNumbersList)
   if (availableNumbersList.length == 1 && this.retrieveTile(xGrid,yGrid)._index[xTile][yTile] == null){
     console.log(xGrid, yGrid, xTile, yTile)
-    console.log(availableNumbersList)
     this.addNumberToTile(xGrid, yGrid, xTile, yTile, availableNumbersList[0])
   }
 };
