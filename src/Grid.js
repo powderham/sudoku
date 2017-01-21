@@ -18,7 +18,7 @@ Grid.prototype.retrieveTile = function (x,y) {
 Grid.prototype.returnColumnNumbers = function (xGrid, yGrid, xTile, yTile) {
   var array = []
   for (var gridRow in this._index ){
-    var tile = this.retrieveTile([gridRow],[xGrid])
+    var tile = this.retrieveTile([gridRow],[yGrid])
     for (var tileRow in tile._index){
       array.push(tile._index[tileRow][yTile])
     }
@@ -28,9 +28,9 @@ Grid.prototype.returnColumnNumbers = function (xGrid, yGrid, xTile, yTile) {
 
 Grid.prototype.returnRowNumbers = function (xGrid, yGrid, xTile, yTile) {
   var array = []
-  var row = this._index[yGrid]
+  var row = this._index[xGrid]
   for (var gridRow in row){
-    var tile = this._index[yGrid][gridRow]
+    var tile = this._index[xGrid][gridRow]
     for (var index in tile._index[xTile]){
       array.push(tile._index[xTile][index])
     }
@@ -51,7 +51,6 @@ Grid.prototype.availableNumbers = function (xGrid, yGrid, xTile, yTile) {
     }
   }
   workingNumbers = this.returnColumnNumbers(xGrid, yGrid, xTile, yTile)
-
   for (var number in workingNumbers){
     if(currentNumbers.indexOf(workingNumbers[number]) === -1){
       currentNumbers.push(workingNumbers[number])
@@ -63,7 +62,6 @@ Grid.prototype.availableNumbers = function (xGrid, yGrid, xTile, yTile) {
       currentNumbers.push(workingNumbers[number])
     }
   }
-
   for (var i in currentNumbers){
     index = allNumbers.indexOf(currentNumbers[i])
     if (index > -1){
@@ -89,27 +87,27 @@ Grid.prototype.print = function () {
   this.printRow(array)
   console.log("┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫")
 
-  array = this.cleanNulls(this.returnRowNumbers(0,1,0,0))
+  array = this.cleanNulls(this.returnRowNumbers(1,0,0,0))
   this.printRow(array)
   console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
 
-  array = this.cleanNulls(this.returnRowNumbers(0,1,1,0))
+  array = this.cleanNulls(this.returnRowNumbers(1,0,1,0))
   this.printRow(array)
   console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
 
-  array = this.cleanNulls(this.returnRowNumbers(0,1,2,0))
+  array = this.cleanNulls(this.returnRowNumbers(1,0,2,0))
   this.printRow(array)
   console.log("┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫")
 
-  array = this.cleanNulls(this.returnRowNumbers(0,2,0,0))
+  array = this.cleanNulls(this.returnRowNumbers(2,0,0,0))
   this.printRow(array)
   console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
 
-  array = this.cleanNulls(this.returnRowNumbers(0,2,1,0))
+  array = this.cleanNulls(this.returnRowNumbers(2,0,1,0))
   this.printRow(array)
   console.log("┣───┼───┼───┃───┼───┼───┃───┼───┼───┫")
 
-  array = this.cleanNulls(this.returnRowNumbers(0,2,2,0))
+  array = this.cleanNulls(this.returnRowNumbers(2,0,2,0))
   this.printRow(array)
   console.log("┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛")
 };
@@ -132,7 +130,6 @@ Grid.prototype.solve = function () {
     for (j = 0; j<=2; j++){
       for(v = 0; v<=2; v++){
         for(w = 0; w<=2; w++){
-          console.log([i],[j],[v],[w])
           this.inputSolve([i],[j],[v],[w])
         }
       }
@@ -142,9 +139,7 @@ Grid.prototype.solve = function () {
 
 Grid.prototype.inputSolve = function (xGrid, yGrid, xTile, yTile) {
   availableNumbersList = this.availableNumbers(xGrid, yGrid, xTile, yTile)
-  console.log(availableNumbersList)
   if (availableNumbersList.length == 1 && this.retrieveTile(xGrid,yGrid)._index[xTile][yTile] == null){
-    console.log(xGrid, yGrid, xTile, yTile)
     this.addNumberToTile(xGrid, yGrid, xTile, yTile, availableNumbersList[0])
   }
 };

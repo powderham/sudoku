@@ -9,6 +9,11 @@ describe("Grid", function() {
     it("can tell a tile to add a number to itself", function(){
       grid.addNumberToTile(0,0,0,0,1)
       expect(grid.retrieveTile(0,0)._index[0][0]).toEqual(1)
+      grid.addNumberToTile(0,1,0,1,2)
+      grid.print()
+      expect(grid.retrieveTile(0,1)._index[0][1]).toEqual(2)
+
+
     })
 
     it("can return all numbers in the same column", function(){
@@ -34,6 +39,31 @@ describe("Grid", function() {
       grid.addNumberToTile(0,2,0,1,8)
       grid.addNumberToTile(0,2,0,2,9)
       expect(grid.returnRowNumbers(0,0,0,0)).toEqual([1,2,3,4,5,6,7,8,9])
+      grid.addNumberToTile(1,0,0,0,9)
+      grid.addNumberToTile(1,0,0,1,8)
+      grid.addNumberToTile(1,0,0,2,7)
+      grid.addNumberToTile(1,1,0,0,6)
+      grid.addNumberToTile(1,1,0,1,5)
+      grid.addNumberToTile(1,1,0,2,4)
+      grid.addNumberToTile(1,2,0,0,3)
+      grid.addNumberToTile(1,2,0,1,2)
+      grid.addNumberToTile(1,2,0,2,1)
+      grid.print()
+      expect(grid.returnRowNumbers(1,0,0,0)).toEqual([9,8,7,6,5,4,3,2,1])
+
+    })
+
+    it("can return all numbers in the same row", function(){
+      grid.addNumberToTile(0,0,1,0,1)
+      grid.addNumberToTile(0,0,1,1,2)
+      grid.addNumberToTile(0,0,1,2,3)
+      grid.addNumberToTile(0,1,1,0,4)
+      grid.addNumberToTile(0,1,1,1,5)
+      grid.addNumberToTile(0,1,1,2,6)
+      grid.addNumberToTile(0,2,1,0,7)
+      grid.addNumberToTile(0,2,1,1,8)
+      grid.print()
+      expect(grid.returnRowNumbers(0,0,1,0)).toEqual([1,2,3,4,5,6,7,8, null])
     })
   })
 
@@ -54,7 +84,7 @@ describe("Grid", function() {
       grid.addNumberToTile(0,2,0,0,7)
       grid.addNumberToTile(0,2,0,1,8)
       grid.print()
-      expect(grid.availableNumbers(2,0,0,0)).toEqual([9])
+      expect(grid.availableNumbers(0,2,0,2)).toEqual([9])
     })
     it("can return possible numbers for input in a column", function(){
       grid.addNumberToTile(0,0,0,0,1)
@@ -65,8 +95,9 @@ describe("Grid", function() {
       grid.addNumberToTile(1,0,2,0,6)
       grid.addNumberToTile(2,0,0,0,7)
       grid.addNumberToTile(2,0,1,0,8)
-      grid.print()
-      expect(grid.availableNumbers(0,2,2,0)).toEqual([9])
+      expect(grid.returnColumnNumbers(2,0,2,0)).toEqual([1,2,3,4,5,6,7,8,null])
+      expect(grid.availableNumbers(2,0,2,0)).toEqual([9])
+
     })
 
     it("can input numbers where only one is available in a tile", function() {
@@ -83,9 +114,22 @@ describe("Grid", function() {
       grid.solve()
       grid.print()
       expect(grid.retrieveTile(0,0)._index[2][2]).toEqual(9)
+      grid = new Grid()
+      grid.addNumberToTile(1,0,0,0,1)
+      grid.addNumberToTile(1,0,0,1,2)
+      grid.addNumberToTile(1,0,0,2,3)
+      grid.addNumberToTile(1,0,1,0,4)
+      grid.addNumberToTile(1,0,1,1,5)
+      grid.addNumberToTile(1,0,1,2,6)
+      grid.addNumberToTile(1,0,2,0,7)
+      grid.addNumberToTile(1,0,2,1,8)
+      grid.print()
+      grid.solve()
+      grid.print()
+      expect(grid.retrieveTile(1,0)._index[2][2]).toEqual(9)
     })
 
-    fit("can input numbers where only one is available in a row", function(){
+    it("can input numbers where only one is available in a row", function(){
       grid.addNumberToTile(0,0,0,0,1)
       grid.addNumberToTile(0,0,0,1,2)
       grid.addNumberToTile(0,0,0,2,3)
@@ -94,22 +138,33 @@ describe("Grid", function() {
       grid.addNumberToTile(0,1,0,2,6)
       grid.addNumberToTile(0,2,0,0,7)
       grid.addNumberToTile(0,2,0,1,9)
-      grid.print()
       grid.solve()
-      grid.print()
-      expect(grid.retrieveTile(2,0)._index[2][0]).toEqual(8)
+      expect(grid.retrieveTile(0,2)._index[0][2]).toEqual(8)
+      grid = new Grid()
+      grid.addNumberToTile(1,0,1,0,1)
+      grid.addNumberToTile(1,0,1,1,2)
+      grid.addNumberToTile(1,0,1,2,3)
+      grid.addNumberToTile(1,1,1,0,4)
+      grid.addNumberToTile(1,1,1,1,5)
+      grid.addNumberToTile(1,1,1,2,6)
+      grid.addNumberToTile(1,2,1,0,7)
+      grid.addNumberToTile(1,2,1,1,8)
+      grid.solve()
+      expect(grid.retrieveTile(1,2)._index[1][2]).toEqual(9)
+
     })
 
     it("can input numbers where only one is available in a column", function(){
       grid.addNumberToTile(0,0,0,0,1)
-      grid.addNumberToTile(0,0,0,1,2)
-      grid.addNumberToTile(0,0,0,2,3)
+      grid.addNumberToTile(0,0,1,0,2)
+      grid.addNumberToTile(0,0,2,0,3)
       grid.addNumberToTile(1,0,0,0,4)
       grid.addNumberToTile(1,0,1,0,5)
       grid.addNumberToTile(1,0,2,0,6)
       grid.addNumberToTile(2,0,0,0,7)
       grid.addNumberToTile(2,0,1,0,8)
-      expect(grid.retrieveTile(0,2)._index[0][2]).toEqual(9)
+      grid.solve()
+      expect(grid.retrieveTile(2,0)._index[2][0]).toEqual(9)
     })
   })
 });
