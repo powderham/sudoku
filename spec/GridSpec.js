@@ -166,5 +166,43 @@ describe("Grid", function() {
       grid.solve()
       expect(grid.retrieveTile(2,0)._index[2][0]).toEqual(9)
     })
+
+    it("can input numbers where multiple availability is found", function(){
+      //adding 8 numbers to the tile
+      grid.addNumberToTile(0,0,0,0,1)
+      grid.addNumberToTile(0,0,0,1,2)
+      grid.addNumberToTile(0,0,0,2,3)
+      grid.addNumberToTile(0,0,1,0,4)
+      grid.addNumberToTile(0,0,1,1,5)
+      grid.addNumberToTile(0,0,1,2,6)
+      grid.addNumberToTile(0,0,2,0,7)
+      grid.addNumberToTile(0,0,2,1,8)
+      grid.print()
+      //adding the rest of the top row
+      grid.addNumberToTile(0,1,0,0,4)
+      grid.addNumberToTile(0,1,0,1,5)
+      grid.addNumberToTile(0,1,0,2,6)
+      grid.addNumberToTile(0,2,0,0,7)
+      grid.addNumberToTile(0,2,0,1,8)
+      grid.print()
+      //adding the rest of the column
+      grid.addNumberToTile(1,0,0,0,2)
+      grid.addNumberToTile(1,0,1,0,5)
+      grid.addNumberToTile(1,0,2,0,6)
+      grid.addNumberToTile(2,0,0,0,3)
+      grid.addNumberToTile(2,0,1,0,8)
+      grid.print()
+      grid.solve()
+      grid.print()
+      expect(grid.retrieveTile(0,0)._index[2][2]).toEqual(9)
+      expect(grid.retrieveTile(0,2)._index[0][2]).toEqual(9)
+      expect(grid.retrieveTile(2,0)._index[2][0]).toEqual(9)
+    })
+    describe("On initialisation", function(){
+      it("can add multiple numbers to a row", function(){
+        grid.addRow(0,0,[1,2,3,4,5,6,7,8,9])
+        expect(grid.returnRowNumbers(0,0,0,0)).toEqual([1,2,3,4,5,6,7,8,9])
+      })
+    })
   })
 });

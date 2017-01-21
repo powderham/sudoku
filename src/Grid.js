@@ -11,6 +11,16 @@ Grid.prototype.addNumberToTile = function (xGrid,yGrid, xTile, yTile, number) {
   tile.addNumber(xTile, yTile, number)
 };
 
+Grid.prototype.addRow = function(grid,tile,[one,two,three,four,five,six,seven,eight,nine]){
+  tiles = this._index[grid]
+  count = 0
+  input = [[one,two,three],[four,five,six],[seven,eight,nine]]
+  for (var t in tiles){
+    tiles[t]._index[tile] = input[count]
+    count++;
+  }
+}
+
 Grid.prototype.retrieveTile = function (x,y) {
   return this._index[x][y]
 };
