@@ -203,6 +203,22 @@ describe("Grid", function() {
         grid.addRow(0,0,[1,2,3,4,5,6,7,8,9])
         expect(grid.returnRowNumbers(0,0,0,0)).toEqual([1,2,3,4,5,6,7,8,9])
       })
+      it("can set up multiple rows at once", function(){
+        grid.setup([
+          [1,null,null,null,null,null,null,null,null],
+          [2,null,null,null,null,null,null,null,null],
+          [3,null,null,null,null,null,null,null,null],
+          [null,null,null,4,null,null,null,null,null],
+          [null,null,null,5,null,null,null,null,null],
+          [null,null,null,6,null,null,null,null,null],
+          [null,null,null,null,null,null,7,null,null],
+          [null,null,null,null,null,null,8,null,null],
+          [null,null,null,null,null,null,9,null,null]
+        ])
+        expect(grid.returnColumnNumbers(0,0,0,0)).toEqual([1,2,3,null,null,null,null,null,null])
+        expect(grid.returnColumnNumbers(0,1,0,0)).toEqual([null,null,null,4,5,6,null,null,null])
+        expect(grid.returnColumnNumbers(0,2,0,0)).toEqual([null,null,null,null,null,null,7,8,9])
+      })
     })
   })
 });

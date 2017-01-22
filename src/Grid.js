@@ -6,19 +6,30 @@ function Grid() {
     ]
 };
 
+Grid.prototype.setup = function (array) {
+  c = 0
+  for (g = 0; g <= 2; g++){
+    for (t = 0; t <= 2; t++){
+      subarray = array[c]
+      this.addRow(g,t,subarray);
+      c += 1;
+    }
+  }
+};
+
 Grid.prototype.addNumberToTile = function (xGrid,yGrid, xTile, yTile, number) {
   var tile = this.retrieveTile(xGrid, yGrid)
   tile.addNumber(xTile, yTile, number)
 };
 
 Grid.prototype.addRow = function(grid,tile,[one,two,three,four,five,six,seven,eight,nine]){
-  tiles = this._index[grid]
-  count = 0
-  input = [[one,two,three],[four,five,six],[seven,eight,nine]]
-  for (var t in tiles){
-    tiles[t]._index[tile] = input[count]
-    count++;
-  }
+    tiles = this._index[grid]
+    count = 0
+    input = [[one,two,three],[four,five,six],[seven,eight,nine]]
+    for (var t in tiles){
+      tiles[t]._index[tile] = input[count]
+      count++;
+    }
 }
 
 Grid.prototype.retrieveTile = function (x,y) {
