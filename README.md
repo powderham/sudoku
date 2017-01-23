@@ -10,4 +10,5 @@ The aim of this project was to create a programme to solve a Sudoku based off of
 # Outcome
 
 As per the below example, the sudoku solver is now complete. You can read about the hourney [here](http://edpowderham.com)
+
 <script src="https://gist.github.com/powderham/5401d13f295077c82c959ba34be44c1a.js"></script>
