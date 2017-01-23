@@ -1,5 +1,6 @@
 function Tile() {
   this._index = [[null,null,null],[null,null,null],[null,null,null]]
+  this.ONETONINE = [1,2,3,4,5,6,7,8,9]
 }
 
 
@@ -35,7 +36,7 @@ Tile.prototype.removeNulls = function (array) {
 };
 
 Tile.prototype.isComplete = function () {
-  complete = [1,2,3,4,5,6,7,8,9]
+  complete = this.ONETONINE
   current = this.existingNumbers()
   if (this.equalArrays(current, complete)){
     return true

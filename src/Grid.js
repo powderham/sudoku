@@ -4,6 +4,7 @@ function Grid() {
       [new Tile(),new Tile(),new Tile()],
       [new Tile(),new Tile(),new Tile()]
     ]
+  this.ONETONINE = [1,2,3,4,5,6,7,8,9]
 };
 
 Grid.prototype.setup = function (array) {
@@ -60,7 +61,7 @@ Grid.prototype.returnRowNumbers = function (xGrid, yGrid, xTile, yTile) {
 };
 
 Grid.prototype.availableNumbers = function (xGrid, yGrid, xTile, yTile) {
-  var allNumbers = [1,2,3,4,5,6,7,8,9]
+  var allNumbers = this.ONETONINE
   var currentNumbers = []
   var workingNumbers = []
 
@@ -191,7 +192,7 @@ Grid.prototype.isComplete = function () {
 
 
 Grid.prototype.containsOneToNine = function (array) {
-  complete = [1,2,3,4,5,6,7,8,9]
+  complete = this.ONETONINE
   current = []
   for (var index in array){
     current.push(array[index])
