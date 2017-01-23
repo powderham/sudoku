@@ -33,3 +33,19 @@ Tile.prototype.removeNulls = function (array) {
   }
   return returnArray
 };
+
+Tile.prototype.isComplete = function () {
+  complete = [1,2,3,4,5,6,7,8,9]
+  current = this.existingNumbers()
+  if (this.equalArrays(current, complete)){
+    return true
+  } else {
+    return false
+  }
+};
+
+Tile.prototype.equalArrays = function (a1, a2) {
+  a1 = a1.sort()
+  a2 = a2.sort()
+  return (a1.length==a2.length && a1.every(function(v,i) { return v === a2[i]}))
+};

@@ -180,16 +180,12 @@ Grid.prototype.isComplete = function () {
   count = 0
   for (var row in this._index){
     for (var tile in this._index[row]){
-      if (this.containsOneToNine(this._index[row][tile].existingNumbers()) == true){
-        count += 1;
+      if (!this._index[row][tile].isComplete()){
+        return false
       }
     }
   }
-  if (count == 9){
-    return true
-  } else {
-    return false
-  }
+  return true
 };
 
 
