@@ -147,20 +147,68 @@ Grid.prototype.printRow = function (row) {
 };
 
 Grid.prototype.solve = function () {
+  count = 0
   for (i = 0; i <= 2; i++){
     for (j = 0; j<=2; j++){
       for(v = 0; v<=2; v++){
         for(w = 0; w<=2; w++){
-          this.inputSolve([i],[j],[v],[w])
+          count += this.inputSolve([i],[j],[v],[w])
         }
       }
     }
   }
-}
+  if (count == 0){
+    return false
+  } else if (this.isComplete() == true) {
+    return true
+  } else {
+    this.solve()
+  }
+};
 
 Grid.prototype.inputSolve = function (xGrid, yGrid, xTile, yTile) {
   availableNumbersList = this.availableNumbers(xGrid, yGrid, xTile, yTile)
   if (availableNumbersList.length == 1 && this.retrieveTile(xGrid,yGrid)._index[xTile][yTile] == null){
     this.addNumberToTile(xGrid, yGrid, xTile, yTile, availableNumbersList[0])
+    return 1
+  } else {
+    return 0
   }
+};
+
+Grid.prototype.isComplete = function () {
+  count = 0
+  for (var row in this._index){
+    for (var tile in this._index[row]){
+      if (this.containsOneToNine(this._index[row][tile].existingNumbers()) == true){
+        count += 1;
+      }
+    }
+  }
+  if (count == 9){
+    return true
+  } else {
+    return false
+  }
+};
+
+
+
+Grid.prototype.containsOneToNine = function (array) {
+  complete = [1,2,3,4,5,6,7,8,9]
+  current = []
+  for (var index in array){
+    current.push(array[index])
+  }
+  if (this.equalArrays(current, complete)){
+    return true
+  } else {
+    return false
+  }
+};
+
+Grid.prototype.equalArrays = function (a1, a2) {
+  a1 = a1.sort()
+  a2 = a2.sort()
+  return (a1.length==a2.length && a1.every(function(v,i) { return v === a2[i]}))
 };

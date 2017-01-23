@@ -198,6 +198,27 @@ describe("Grid", function() {
       expect(grid.retrieveTile(0,2)._index[0][2]).toEqual(9)
       expect(grid.retrieveTile(2,0)._index[2][0]).toEqual(9)
     })
+    it("can check validity", function(){
+      expect(grid.containsOneToNine([1,2,3,4,5,6,7,8,9])).toEqual(true)
+    })
+
+    it("can solve the grid recursively", function(){
+      grid.setup([
+        [null,null,null,2,6,null,7,null,1],
+        [6,8,null,null,7,null,null,9,null],
+        [1,9,null,null,null,4,5,null,null],
+        [8,2,null,1,null,null,null,4,null],
+        [null,null,4,6,null,2,9,null,null],
+        [null,5,null,null,null,3,null,2,8],
+        [null,null,9,3,null,null,null,7,4],
+        [null,4,null,null,5,null,null,3,6],
+        [7,null,3,null,1,8,null,null,null]
+      ])
+      grid.solve()
+      grid.print()
+      expect(grid.isComplete()).toEqual(true)
+      grid.print()
+    })
     describe("On initialisation", function(){
       it("can add multiple numbers to a row", function(){
         grid.addRow(0,0,[1,2,3,4,5,6,7,8,9])
